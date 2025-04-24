@@ -66,7 +66,16 @@ contract SwapRocketPool {
     /// @notice Retrieves the deposit delay for rETH deposits.
     /// @return depositDelay The delay in blocks before deposits are processed.
     function getDepositDelay() public view returns (uint256) {
-        // Write your code here
+        uint256 depositDelay = rStorage.getUint(
+            keccak256(
+                abi.encodePacked(
+                    keccak256("dao.protocol.setting.network"),
+                    "network.reth.deposit.delay"
+                )
+            )
+        );
+
+        return depositDelay;
     }
 
     /// @notice Retrieves the block number of the last deposit made by a user.
