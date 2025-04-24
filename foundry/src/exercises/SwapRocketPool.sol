@@ -50,7 +50,7 @@ contract SwapRocketPool {
         view
         returns (uint256 ethAmount)
     {
-        // Write your code here
+        ethAmount = reth.getEthValue(rEthAmount);
     }
 
     /// @notice Retrieves the deposit availability status and maximum deposit amount.
