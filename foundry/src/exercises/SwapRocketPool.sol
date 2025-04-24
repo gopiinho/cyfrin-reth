@@ -36,7 +36,10 @@ contract SwapRocketPool {
         view
         returns (uint256 rEthAmount, uint256 fee)
     {
-        // Write your code here
+        uint256 depositFee = protocolSettings.getDepositFee();
+        fee = ethAmount * depositFee / CALC_BASE;
+        ethAmount -= fee;
+        rEthAmount = reth.getRethValue(ethAmount);
     }
 
     /// @notice Calculates the amount of ETH for a given rETH amount.
