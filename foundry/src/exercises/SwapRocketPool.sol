@@ -57,7 +57,10 @@ contract SwapRocketPool {
     /// @return depositEnabled Whether deposits are currently enabled.
     /// @return maxDepositAmount The maximum allowed deposit amount in ETH.
     function getAvailability() external view returns (bool, uint256) {
-        // Write your code here
+        bool depositEnabled = protocolSettings.getDepositEnabled();
+        uint256 maxDepositAmount = depositPool.getMaximumDepositAmount();
+
+        return (depositEnabled, maxDepositAmount);
     }
 
     /// @notice Retrieves the deposit delay for rETH deposits.
