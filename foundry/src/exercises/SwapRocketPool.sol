@@ -82,7 +82,10 @@ contract SwapRocketPool {
     /// @param user The address of the user.
     /// @return lastDepositBlock The block number of the user's last deposit.
     function getLastDepositBlock(address user) public view returns (uint256) {
-        // Write your code here
+        bytes32 key = keccak256(abi.encodePacked("user.deposit.block", user));
+        uint256 lastDepositBlock = rStorage.getUint(key);
+
+        return lastDepositBlock;
     }
 
     /// @notice Swaps ETH to rETH by depositing ETH into the RocketPool deposit pool.
