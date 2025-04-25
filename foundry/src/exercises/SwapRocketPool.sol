@@ -13,6 +13,7 @@ import {
     ROCKET_DEPOSIT_POOL,
     ROCKET_DAO_PROTOCOL_SETTINGS_DEPOSIT
 } from "../Constants.sol";
+import {console} from "../../lib/forge-std/src/console.sol";
 
 /// @title SwapRocketPool
 /// @notice This contract facilitates swapping between ETH and rETH using RocketPool.
@@ -99,6 +100,10 @@ contract SwapRocketPool {
     /// @param rEthAmount The amount of rETH to be burned.
     /// @dev The caller must approve the contract to transfer the specified rETH amount.
     function swapRethToEth(uint256 rEthAmount) external {
-        // Write your code here
+        // First transfer from "Test" contract to this SwapRocketPool
+        reth.transferFrom(msg.sender, address(this), rEthAmount);
+        reth.burn(rEthAmount);
     }
+
+    receive() external payable {}
 }
