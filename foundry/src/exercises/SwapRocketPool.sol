@@ -91,7 +91,8 @@ contract SwapRocketPool {
     /// @notice Swaps ETH to rETH by depositing ETH into the RocketPool deposit pool.
     /// @dev The caller must send ETH with this transaction.
     function swapEthToReth() external payable {
-        // Write your code here
+        uint256 depositAmount = msg.value;
+        depositPool.deposit{value: depositAmount}();
     }
 
     /// @notice Swaps rETH to ETH by burning rETH.
